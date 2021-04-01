@@ -28,6 +28,7 @@
         "twig/twig": "^3.3"
     },
     "require-dev": {
+        "phpstan/phpstan-symfony": "^0.12.21",
         "symfony/maker-bundle": "^1.30"
     },
     "config": {

@@ -18,7 +18,7 @@ class RentalController extends AbstractController
      * @Rest\View()
      *
      * @param RentalRepository $rentalRepository
-     * @return array
+     * @return Rental[]
      */
     public function getAllAction(RentalRepository $rentalRepository): array
     {

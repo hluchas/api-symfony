@@ -80,7 +80,7 @@ class User
     /**
      * @ORM\OneToMany(targetEntity="Rental", mappedBy="userId")
      *
-     * @var Rental[]
+     * @var Rental[]|ArrayCollection
      */
     private $rentals;
 
@@ -200,7 +200,7 @@ class User
     }
 
     /**
-     * @return Rental[]
+     * @return Rental[]|ArrayCollection
      */
     public function getRentals()
     {

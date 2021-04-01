@@ -18,7 +18,7 @@ class CarController extends AbstractController
      * @Rest\View()
      *
      * @param CarRepository $carRepository
-     * @return array
+     * @return Car[]
      */
     public function getAllAction(CarRepository $carRepository): array
     {
@@ -47,7 +47,7 @@ class CarController extends AbstractController
      * @param ConstraintViolationListInterface $validationErrors
      * @param CarRepository $carRepository
      */
-    public function postAction(Car $car, ConstraintViolationListInterface $validationErrors,  CarRepository $carRepository)
+    public function postAction(Car $car, ConstraintViolationListInterface $validationErrors,  CarRepository $carRepository): Car
     {
         if (count($validationErrors) > 0) {
             throw new BadRequestException($validationErrors);
