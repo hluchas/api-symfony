@@ -4,6 +4,7 @@
 namespace App\Repository;
 
 
+use App\Entity\Car;
 use App\Entity\Rental;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,5 +20,14 @@ class RentalRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Rental::class);
+    }
+
+    public function save(Car $car): Car
+    {
+        $em = $this->getEntityManager();
+        $em->persist($car);
+        $em->flush();
+
+        return $car;
     }
 }
