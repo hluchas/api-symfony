@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityNotFoundException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,7 +21,7 @@ class UserRepository extends ServiceEntityRepository
 
     public function save(User $user): User
     {
-        $user->setUpdatedAt(new \DateTime());
+        $user->setUpdatedNow();
 
         $em = $this->getEntityManager();
         $em->persist($user);

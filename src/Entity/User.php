@@ -178,11 +178,8 @@ class User
         return $this->updatedAt;
     }
 
-    /**
-     * @param \DateTime $updatedAt
-     */
-    public function setUpdatedAt(\DateTime $updatedAt): void
+    public function setUpdatedNow(): void
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt->modify("now");
     }
 }
