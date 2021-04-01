@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -76,10 +77,25 @@ class User
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Rental", mappedBy="userId")
+     *
+     * @var Rental[]
+     */
+    private $rentals;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Car", mappedBy="userId")
+     *
+     * @var Car
+     */
+    private $car;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->rentals   = new ArrayCollection();
     }
 
     /**
@@ -181,5 +197,37 @@ class User
     public function setUpdatedNow(): void
     {
         $this->updatedAt->modify("now");
+    }
+
+    /**
+     * @return Rental[]
+     */
+    public function getRentals()
+    {
+        return $this->rentals;
+    }
+
+    /**
+     * @param Rental $rental
+     */
+    public function addRental(Rental $rental): void
+    {
+        $this->rentals->add($rental);
+    }
+
+    /**
+     * @return Car
+     */
+    public function getCar(): Car
+    {
+        return $this->car;
+    }
+
+    /**
+     * @param Car $car
+     */
+    public function setCar(Car $car): void
+    {
+        $this->car = $car;
     }
 }
