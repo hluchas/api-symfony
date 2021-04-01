@@ -28,6 +28,7 @@
         "twig/twig": "^3.3"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
         "phpstan/phpstan-symfony": "^0.12.21",
         "symfony/maker-bundle": "^1.30",
         "symfony/phpunit-bridge": "^5.2"

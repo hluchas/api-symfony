@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Entity\Rental;
@@ -17,7 +16,6 @@ class RentalController extends AbstractController
      * @Rest\Get("/api/rental")
      * @Rest\View()
      *
-     * @param RentalRepository $rentalRepository
      * @return Rental[]
      */
     public function getAllAction(RentalRepository $rentalRepository): array
@@ -29,9 +27,6 @@ class RentalController extends AbstractController
      * @Rest\Get("/api/rental/{id}")
      * @Rest\View()
      * @ParamConverter("id", class="App:Rental")
-     *
-     * @param Rental $rental
-     * @return Rental
      */
     public function getAction(Rental $rental): Rental
     {
@@ -42,12 +37,8 @@ class RentalController extends AbstractController
      * @Rest\Post("/api/rental")
      * @Rest\View()
      * @ParamConverter("rental", converter="fos_rest.request_body")
-     *
-     * @param Rental $rental
-     * @param ConstraintViolationListInterface $validationErrors
-     * @param RentalRepository $rentalRepository
      */
-    public function postAction(Rental $rental, ConstraintViolationListInterface $validationErrors,  RentalRepository $rentalRepository)
+    public function postAction(Rental $rental, ConstraintViolationListInterface $validationErrors, RentalRepository $rentalRepository)
     {
         if (count($validationErrors) > 0) {
             throw new BadRequestException($validationErrors);

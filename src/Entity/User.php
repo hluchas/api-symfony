@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(
@@ -95,7 +94,7 @@ class User
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
-        $this->rentals   = new ArrayCollection();
+        $this->rentals = new ArrayCollection();
     }
 
     /**
@@ -106,89 +105,56 @@ class User
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * @param string $firstName
-     */
     public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
     }
 
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
     }
 
-    /**
-     * @param string $lastName
-     */
     public function setLastName(string $lastName): void
     {
         $this->lastName = $lastName;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     */
     public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     */
     public function setPassword(string $password): void
     {
         $this->password = $password;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param \DateTime $createdAt
-     */
     public function setCreatedAt(\DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
@@ -196,7 +162,7 @@ class User
 
     public function setUpdatedNow(): void
     {
-        $this->updatedAt->modify("now");
+        $this->updatedAt->modify('now');
     }
 
     /**
@@ -207,25 +173,16 @@ class User
         return $this->rentals;
     }
 
-    /**
-     * @param Rental $rental
-     */
     public function addRental(Rental $rental): void
     {
         $this->rentals->add($rental);
     }
 
-    /**
-     * @return Car
-     */
     public function getCar(): Car
     {
         return $this->car;
     }
 
-    /**
-     * @param Car $car
-     */
     public function setCar(Car $car): void
     {
         $this->car = $car;

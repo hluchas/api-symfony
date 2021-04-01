@@ -15,9 +15,6 @@ class UserController extends AbstractController
     /**
      * @Rest\Get("/api/user")
      * @Rest\View()
-     *
-     * @param UserRepository $userRepository
-     * @return array
      */
     public function getAllAction(UserRepository $userRepository): array
     {
@@ -28,9 +25,6 @@ class UserController extends AbstractController
      * @Rest\Get("/api/user/{id}")
      * @Rest\View()
      * @ParamConverter("id", class="App:User")
-     *
-     * @param User $user
-     * @return User
      */
     public function getAction(User $user): User
     {
@@ -41,12 +35,8 @@ class UserController extends AbstractController
      * @Rest\Post("/api/user")
      * @Rest\View()
      * @ParamConverter("user", converter="fos_rest.request_body")
-     *
-     * @param User $user
-     * @param ConstraintViolationListInterface $validationErrors
-     * @param UserRepository $userRepository
      */
-    public function postAction(User $user, ConstraintViolationListInterface $validationErrors,  UserRepository $userRepository)
+    public function postAction(User $user, ConstraintViolationListInterface $validationErrors, UserRepository $userRepository)
     {
         if (count($validationErrors) > 0) {
             throw new BadRequestException($validationErrors);
@@ -59,10 +49,6 @@ class UserController extends AbstractController
      * @Rest\Delete("/api/user/{id}")
      * @Rest\View()
      * @ParamConverter("id", class="App:User")
-     *
-     * @param User $user
-     * @param UserRepository $userRepository
-     * @return array
      */
     public function deleteAction(User $user, UserRepository $userRepository): array
     {

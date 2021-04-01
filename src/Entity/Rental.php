@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Entity;
 
 use App\Repository\RentalRepository;
@@ -66,49 +65,31 @@ class Rental
         $this->id = $id;
     }
 
-    /**
-     * @return User
-     */
     public function getUser(): User
     {
         return $this->user;
     }
 
-    /**
-     * @param User $user
-     */
     public function setUser(User $user): void
     {
         $this->user = $user;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getFrom(): \DateTime
     {
         return $this->from;
     }
 
-    /**
-     * @param \DateTime $from
-     */
     public function setFrom(\DateTime $from): void
     {
         $this->from = $from;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getTo(): \DateTime
     {
         return $this->to;
     }
 
-    /**
-     * @param \DateTime $to
-     */
     public function setTo(\DateTime $to): void
     {
         $this->to = $to;

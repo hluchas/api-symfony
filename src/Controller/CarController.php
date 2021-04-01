@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Entity\Car;
@@ -17,7 +16,6 @@ class CarController extends AbstractController
      * @Rest\Get("/api/car")
      * @Rest\View()
      *
-     * @param CarRepository $carRepository
      * @return Car[]
      */
     public function getAllAction(CarRepository $carRepository): array
@@ -29,9 +27,6 @@ class CarController extends AbstractController
      * @Rest\Get("/api/car/{id}")
      * @Rest\View()
      * @ParamConverter("id", class="App:Car")
-     *
-     * @param Car $car
-     * @return Car
      */
     public function getAction(Car $car): Car
     {
@@ -42,12 +37,8 @@ class CarController extends AbstractController
      * @Rest\Post("/api/car")
      * @Rest\View()
      * @ParamConverter("car", converter="fos_rest.request_body")
-     *
-     * @param Car $car
-     * @param ConstraintViolationListInterface $validationErrors
-     * @param CarRepository $carRepository
      */
-    public function postAction(Car $car, ConstraintViolationListInterface $validationErrors,  CarRepository $carRepository): Car
+    public function postAction(Car $car, ConstraintViolationListInterface $validationErrors, CarRepository $carRepository): Car
     {
         if (count($validationErrors) > 0) {
             throw new BadRequestException($validationErrors);
