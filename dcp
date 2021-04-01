@@ -1,0 +1,21 @@
+#!/bin/bash
+
+COMPOSE="docker-compose"
+
+if [ $# -gt 0 ]; then
+    if [ "$1" == "up" ] || [ "$1" == "start" ]; then
+        $COMPOSE up -d
+    elif [ "$1" == "build" ] || [ "$1" == "rebuild" ]; then
+        $COMPOSE build
+        $COMPOSE up -d
+    elif [ "$1" == "stop" ]; then
+        $COMPOSE stop
+    elif [ "$1" == "reload" ] || [ "$1" == "restart" ]; then
+        $COMPOSE stop && $COMPOSE up -d
+    else
+        EXEC_CMD="cd /var/www/symfony && $@"
+        $COMPOSE exec php bash -c "$EXEC_CMD"
+    fi
+else
+    $COMPOSE ps
+fi

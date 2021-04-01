@@ -1,29 +1,13 @@
-# README #
+# Digilab test
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### Build
 
-### What is this repository for? ###
+```bash
+git clone git@bitbucket.org:lukasdrahy/digilab-test.git digilab-test
+cd digilab-test
+./build.sh
+```
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Go to [you browser using this link](http://127.0.0.1)
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact

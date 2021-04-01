@@ -1,0 +1,37 @@
+# https://github.com/eko/docker-symfony
+
+version: '3.9'
+services:
+    db:
+        container_name: db
+        build:
+            context: ./docker/db
+        command: ["--default-authentication-plugin=mysql_native_password"]
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: db
+
+    php:
+        container_name: php-fpm
+        build:
+            context: ./docker/php-fpm
+            args:
+                ENABLE_PHP_XDEBUG: 1
+        ports:
+            - "9000:9001"
+        volumes:
+            - ./:/var/www/symfony:cached
+        depends_on:
+            - db
+
+    nginx:
+        container_name: nginx
+        build: ./docker/nginx
+        ports:
+            - "80:80"
+        depends_on: 
+            - php
+        volumes:
+            - ./symfony:/var/www/symfony:cached
