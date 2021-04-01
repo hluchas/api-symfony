@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=UrlRepository::class)
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(
  *     name="user",
  *     indexes={
