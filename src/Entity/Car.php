@@ -45,9 +45,9 @@ class Car
      * @ORM\OneToOne(targetEntity="User", inversedBy="car")
      * @ORM\JoinColumn(name="car_id", referencedColumnName="id")
      *
-     * @var int
+     * @var User
      */
-    private $userId = 0;
+    private $user;
 
     /**
      * @ORM\Column(type="string")
@@ -56,4 +56,84 @@ class Car
      * @var string
      */
     private $status;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFrom(): \DateTime
+    {
+        return $this->from;
+    }
+
+    /**
+     * @param \DateTime $from
+     */
+    public function setFrom(\DateTime $from): void
+    {
+        $this->from = $from;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTo(): \DateTime
+    {
+        return $this->to;
+    }
+
+    /**
+     * @param \DateTime $to
+     */
+    public function setTo(\DateTime $to): void
+    {
+        $this->to = $to;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
 }

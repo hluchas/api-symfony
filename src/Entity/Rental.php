@@ -30,9 +30,9 @@ class Rental
      * @ORM\ManyToOne(targetEntity="User", inversedBy="rentals")
      * @ORM\JoinColumn(name="rental_id", referencedColumnName="id")
      *
-     * @var int
+     * @var User
      */
-    private $userId;
+    private $user;
 
     /**
      * @ORM\Column(type="datetime")
@@ -49,4 +49,68 @@ class Rental
      * @var \DateTime
      */
     private $to;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFrom(): \DateTime
+    {
+        return $this->from;
+    }
+
+    /**
+     * @param \DateTime $from
+     */
+    public function setFrom(\DateTime $from): void
+    {
+        $this->from = $from;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTo(): \DateTime
+    {
+        return $this->to;
+    }
+
+    /**
+     * @param \DateTime $to
+     */
+    public function setTo(\DateTime $to): void
+    {
+        $this->to = $to;
+    }
 }
