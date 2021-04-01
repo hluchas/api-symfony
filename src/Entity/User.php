@@ -64,7 +64,6 @@ class User
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotNull
      *
      * @var \DateTime
      */
@@ -72,7 +71,6 @@ class User
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotNull
      *
      * @var \DateTime
      */

@@ -3,75 +3,71 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\Type\UserType;
 use App\Repository\UserRepository;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\View\View;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
-;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class UserController extends AbstractController
 {
     /**
      * @Rest\Get("/api/user")
+     * @Rest\View()
      *
      * @param UserRepository $userRepository
-     * @return View
+     * @return array
      */
-    public function getAllAction(UserRepository $userRepository): View
+    public function getAllAction(UserRepository $userRepository): array
     {
-        return View::create($userRepository->findAll(), Response::HTTP_OK);
+        return $userRepository->findAll();
     }
 
     /**
      * @Rest\Get("/api/user/{id}")
+     * @Rest\View()
      * @ParamConverter("id", class="App:User")
      *
      * @param User $user
-     * @return View
+     * @return User
      */
-    public function getAction(User $user): View
+    public function getAction(User $user): User
     {
-        return View::create($user, Response::HTTP_OK);
+        return $user;
     }
 
     /**
      * @Rest\Post("/api/user")
+     * @Rest\View()
+     * @ParamConverter("user", converter="fos_rest.request_body")
      *
-     * @param Request $request
+     * @param User $user
+     * @param ConstraintViolationListInterface $validationErrors
      * @param UserRepository $userRepository
-     * @return View
      */
-    public function postAction(Request $request, UserRepository $userRepository): View
+    public function postAction(User $user, ConstraintViolationListInterface $validationErrors,  UserRepository $userRepository)
     {
-        $data = json_decode($request->getContent(),true);
-
-        $form = $this->createForm(UserType::class, new User());
-        $form->submit($data);
-
-        if(! $form->isValid()) {
-            return View::create($form->getErrors(), Response::HTTP_BAD_REQUEST);
+        if (count($validationErrors) > 0) {
+            throw new BadRequestException($validationErrors);
         }
 
-        return View::create($userRepository->save($form->getData()), Response::HTTP_OK);
+        return $userRepository->save($user);
     }
 
     /**
      * @Rest\Delete("/api/user/{id}")
+     * @Rest\View()
      * @ParamConverter("id", class="App:User")
      *
      * @param User $user
      * @param UserRepository $userRepository
-     * @return View
+     * @return array
      */
-    public function deleteAction(User $user, UserRepository $userRepository): View
+    public function deleteAction(User $user, UserRepository $userRepository): array
     {
         $userRepository->delete($user);
 
-        return View::create([], Response::HTTP_OK);
+        return [];
     }
 }
