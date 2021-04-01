@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 ./dcp build
 cp .env.local.docker .env.local
 ./dcp composer install
