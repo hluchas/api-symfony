@@ -31,16 +31,10 @@ class UserRepository extends ServiceEntityRepository
         return $user;
     }
 
-    public function deleteById(int $id): void
+    public function delete(User $user): void
     {
-        $url = $this->find($id);
-
-        if (null === $url) {
-            throw new EntityNotFoundException("User with ID '$id' not found");
-        }
-
         $em = $this->getEntityManager();
-        $em->remove($url);
+        $em->remove($user);
         $em->flush();
     }
 }

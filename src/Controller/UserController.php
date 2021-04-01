@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -28,19 +29,13 @@ class UserController extends AbstractController
 
     /**
      * @Rest\Get("/api/user/{id}")
+     * @ParamConverter("id", class="App:User")
      *
-     * @param int $id
-     * @param UserRepository $userRepository
+     * @param User $user
      * @return View
      */
-    public function getAction(int $id, UserRepository $userRepository): View
+    public function getAction(User $user): View
     {
-        $user = $userRepository->findOneById($id);
-
-        if (null === $user) {
-            throw new NotFoundHttpException("User with ID '$id' not found");
-        }
-
         return View::create($user, Response::HTTP_OK);
     }
 
@@ -67,18 +62,15 @@ class UserController extends AbstractController
 
     /**
      * @Rest\Delete("/api/user/{id}")
+     * @ParamConverter("id", class="App:User")
      *
-     * @param int $id
+     * @param User $user
      * @param UserRepository $userRepository
      * @return View
      */
-    public function deleteAction(int $id, UserRepository $userRepository): View
+    public function deleteAction(User $user, UserRepository $userRepository): View
     {
-        try {
-            $userRepository->deleteById($id);
-        } catch (EntityNotFoundException $e) {
-            throw new NotFoundHttpException($e->getMessage());
-        }
+        $userRepository->delete($user);
 
         return View::create([], Response::HTTP_OK);
     }
