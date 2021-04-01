@@ -6,16 +6,19 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(
  *     name="user",
  *     indexes={
  *          @ORM\Index(name="first_name_idx", columns={"first_name"}),
- *          @ORM\Index(name="last_name_idx", columns={"last_name"}),
- *          @ORM\Index(name="email_idx", columns={"email"})
+ *          @ORM\Index(name="last_name_idx", columns={"last_name"})
+ *     },
+ *     uniqueConstraints={
+ *          @ORM\UniqueConstraint(name="email_idx", columns={"email"})
  *     }
- *  )
+ * )
  */
 class User
 {
@@ -45,6 +48,7 @@ class User
     /**
      * @ORM\Column(type="string")
      * @Assert\NotNull
+     * @Assert\Email
      *
      * @var string
      */
