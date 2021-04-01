@@ -10,4 +10,9 @@ cd digilab-test
 
 * Go to [you browser using this link](http://127.0.0.1)
 
+### Tests runner
+
+```bash
+./test.sh
+```
 
