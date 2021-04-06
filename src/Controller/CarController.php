@@ -83,8 +83,6 @@ class CarController extends AbstractController
             return View::create($validationErrors, Response::HTTP_BAD_REQUEST);
         }
 
-        $carRepository->save($car);
-
-        return View::create($car, Response::HTTP_OK);
+        return View::create($carRepository->save($car), Response::HTTP_OK);
     }
 }
