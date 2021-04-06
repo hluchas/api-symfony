@@ -16,16 +16,19 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Project Unit Suite">
+            <directory>src/Tests/Unit</directory>
+        </testsuite>
+        <testsuite name="REST API Test Suite">
+            <directory suffix=".php">./tests/Api</directory>
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
+    <!--    <filter>-->
+    <!--        <whitelist processUncoveredFilesFromWhitelist="true">-->
+    <!--            <directory suffix=".php">src</directory>-->
+    <!--        </whitelist>-->
+    <!--    </filter>-->
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />

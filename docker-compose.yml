@@ -31,7 +31,9 @@ services:
         build: ./docker/nginx
         ports:
             - "80:80"
-        depends_on: 
+            - "81:81"
+        depends_on:
             - php
         volumes:
-            - ./symfony:/var/www/symfony:cached
+            - ./:/var/www/symfony:cached
+            - ./var/log/nginx/:/var/log/nginx
