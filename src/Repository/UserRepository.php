@@ -21,6 +21,10 @@ class UserRepository extends ServiceEntityRepository
 
     public function save(User $user): User
     {
+        if (!$user->getId()) {
+            $user->setCreatedAt(new \DateTime());
+        }
+
         $user->setUpdatedNow();
 
         $em = $this->getEntityManager();

@@ -147,6 +147,10 @@ class User
 
     public function getCreatedAt(): \DateTime
     {
+        if (!$this->createdAt instanceof \DateTime) {
+            $this->createdAt = new \DateTime();
+        };
+
         return $this->createdAt;
     }
 
@@ -162,7 +166,11 @@ class User
 
     public function setUpdatedNow(): void
     {
-        $this->updatedAt->modify('now');
+        if (!$this->updatedAt instanceof \DateTime) {
+            $this->updatedAt = new \DateTime();
+        } else {
+            $this->updatedAt->modify('now');
+        }
     }
 
     /**
