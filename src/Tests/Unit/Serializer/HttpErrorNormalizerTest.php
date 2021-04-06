@@ -24,7 +24,7 @@ class HttpErrorNormalizerTest extends TestCase
     public function testNormalize(): void
     {
         $exception = FlattenException::create(
-            new NotFoundHttpException("test")
+            new NotFoundHttpException('test')
         );
 
         $expectedOutput = [
@@ -41,12 +41,12 @@ class HttpErrorNormalizerTest extends TestCase
 
     public function testSupportsNormalization(): void
     {
-        $exception = new \Exception("test");
+        $exception = new \Exception('test');
 
         self::assertFalse($this->normalizer->supportsNormalization($exception));
 
         $exception = FlattenException::create(
-            new \Exception("test")
+            new \Exception('test')
         );
 
         self::assertTrue($this->normalizer->supportsNormalization($exception));
