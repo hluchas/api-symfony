@@ -20,7 +20,7 @@
             <directory>src/Tests/Unit</directory>
         </testsuite>
         <testsuite name="REST API Test Suite">
-            <directory suffix=".php">./tests/Api</directory>
+            <directory suffix=".php">./src/Tests/Api</directory>
         </testsuite>
     </testsuites>
 
