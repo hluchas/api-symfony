@@ -1,12 +1,12 @@
-# Digilab test
+# Test API in Symfony
 
 Task is not complete to all details as mentioned in API doc section. It is not problem to do everything, but I need to save my time.
 
 ### Build
 
 ```bash
-git clone https://bitbucket.org/lukasdrahy/digilab-test.git
-cd digilab-test
+git clone git@github.com:hluchas/api-symfony.git
+cd api-symfony
 ./build.sh
 ```
 
